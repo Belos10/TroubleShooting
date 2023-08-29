@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.telecom.mapper.ManageMapper">
+
+    <resultMap id="BaseResultMap" type="org.telecom.pojo.Manage">
+            <result property="manageId" column="manage_id" jdbcType="VARCHAR"/>
+            <result property="handlerId" column="handler_id" jdbcType="BIGINT"/>
+            <result property="status" column="mana_status" jdbcType="INTEGER"/>
+            <result property="manaRemark" column="mana_remark" jdbcType="VARCHAR"/>
+            <result property="manaPic" column="mana_pic" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        manage_id,handler_id,status,
+        mana_remark,mana_pic
+    </sql>
+    <select id="getManagePageRepair" resultType="org.telecom.pojo.Manage">
+        select * from manage where handler_id = #{id} and mana_status = #{status}
+        order by (select submit_time from trouble t, manage m where t.trouble_key = m.manage_id) desc limit ${page},${pageSize}
+    </select>
+    <select id="getMealPageCountRepair" resultType="java.lang.Integer">
+        select count(*) from manage where handler_id = #{id} and mana_status = #{status}
+    </select>
+    <select id="getMealPageCountN" resultType="java.lang.Integer">
+        select count(*) from manage where mana_status in (0, 1, 2)
+                                      and #{time} = (select submit_time
+                                                     from trouble t, manage m
+                                                     where t.trouble_key = m.manage_id)
+    </select>
+    <select id="getManagePageN" resultType="org.telecom.pojo.Manage">
+        select * from manage where mana_status in (0, 1, 2)
+                               and #{time} = (select submit_time
+                               from trouble t, manage m
+                                   where t.trouble_key = m.manage_id)
+        order by mana_status desc, (select submit_time
+                  from trouble t, manage m
+                  where t.trouble_key = m.manage_id) desc
+    </select>
+    <select id="getMealPageCountY" resultType="java.lang.Integer">
+        select count(*) from manage where mana_status in (3, 4)
+                                      and #{time} = (select submit_time
+                                                     from trouble t, manage m
+                                                     where t.trouble_key = m.manage_id)
+    </select>
+    <select id="getManagePageY" resultType="org.telecom.pojo.Manage">
+        select * from manage where mana_status in (3, 4)
+                               and #{time} = (select submit_time
+                                              from trouble t, manage m
+                                              where t.trouble_key = m.manage_id)
+        order by mana_status desc, (select submit_time
+                               from trouble t, manage m
+                               where t.trouble_key = m.manage_id) desc
+    </select>
+
+</mapper>

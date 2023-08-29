@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.telecom.mapper.RepairMapper">
+
+    <resultMap id="BaseResultMap" type="org.telecom.pojo.Repair">
+            <id property="manageId" column="manage_id" jdbcType="BIGINT"/>
+            <result property="handlerId" column="handler_id" jdbcType="BIGINT"/>
+            <result property="repairPic" column="repair_pic" jdbcType="VARCHAR"/>
+            <result property="repairRemark" column="repair_remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        manage_id,handler_id,repair_pic,
+        repair_remark
+    </sql>
+</mapper>

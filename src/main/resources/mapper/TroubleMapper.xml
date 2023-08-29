@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.telecom.mapper.TroubleMapper">
+
+    <resultMap id="BaseResultMap" type="org.telecom.pojo.Trouble">
+            <id property="troubleId" column="trouble_id" jdbcType="BIGINT"/>
+            <result property="key" column="trouble_key" jdbcType="VARCHAR"/>
+            <result property="name" column="trouble_name" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="pic" column="pic" jdbcType="VARCHAR"/>
+            <result property="submitTime" column="submit_time" jdbcType="DATE"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="region" column="region" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        trouble_id,key,name,
+        phone,pic,submit_time,
+        remark,address,region
+    </sql>
+</mapper>
