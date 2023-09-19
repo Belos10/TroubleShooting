@@ -3,6 +3,7 @@ package org.telecom.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,11 +18,9 @@ import org.telecom.utils.ExcelUtils;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @Slf4j
@@ -56,6 +55,16 @@ public class ManageController {
     @PostMapping("/expExl")
     public void exportExcel(@RequestBody List<Integer> idList, HttpServletResponse response) throws Exception{
         manageService. exportExcel(idList, response);
+    }
+
+    @PostMapping("/submit")
+    public R<String> returnTrouble(@RequestBody Manage manage){
+        String id = manage.getManageId();
+        if(!Objects.equals(BigInteger.ZERO, manage.getHandlerId())&&manage.getStatus()==0){
+            manage.setStatus(1);
+        }
+        manageService.saveOrUpdate(manage);
+        return R.success("提交成功");
     }
 
 }
