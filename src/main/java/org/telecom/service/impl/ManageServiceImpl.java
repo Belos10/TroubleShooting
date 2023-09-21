@@ -38,22 +38,24 @@ public class ManageServiceImpl extends ServiceImpl<ManageMapper, Manage>
     @Override
     public Page<Manage> getManagePageN(int page, int pageSize, LocalDate time)
     {
+        pageSize = manageMapper.getMealPageCountN(time);
+        page = 0;
         Page<Manage> pageInfo = new Page<>(page, pageSize);
-        int count = manageMapper.getMealPageCountN(time);
-        List<Manage> records =  manageMapper.getManagePageN(page, count, time);
+        List<Manage> records =  manageMapper.getManagePageN(page, pageSize, time);
         pageInfo.setRecords(records);
-        pageInfo.setTotal(count);
+        pageInfo.setTotal(pageSize);
         return pageInfo;
     }
 
     @Override
     public Page<Manage> getManagePageY(int page, int pageSize, LocalDate time)
     {
+        pageSize = manageMapper.getMealPageCountY(time);
+        page = 0;
         Page<Manage> pageInfo = new Page<>(page, pageSize);
-        int count = manageMapper.getMealPageCountY(time);
-        List<Manage> records =  manageMapper.getManagePageY(page, count, time);
+        List<Manage> records =  manageMapper.getManagePageY(page, pageSize, time);
         pageInfo.setRecords(records);
-        pageInfo.setTotal(count);
+        pageInfo.setTotal(pageSize);
         return pageInfo;
     }
 
