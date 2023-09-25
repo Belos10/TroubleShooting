@@ -28,7 +28,7 @@ public class LoginCheckFilter implements Filter
     {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-
+        String sessionId = request.getParameter("sessionid");
         //1、获取本次请求的URI
         String requestURI = request.getRequestURI();// /backend/index.html
 
@@ -62,7 +62,16 @@ public class LoginCheckFilter implements Filter
 //            filterChain.doFilter(request,response);
 //            return;
 //        }
-        if (request.getSession().getAttribute("loginUser") != null)
+//        if (request.getSession().getAttribute("loginUser") != null)
+//        {
+//            log.info("管理员已登录，用户id为：{}", request.getSession().getAttribute("loginUser"));
+//            BigInteger bigInteger = (BigInteger) request.getSession().getAttribute("loginUser");
+//            ThreadLocalUtil.setThreadLocalId(bigInteger.longValue());
+//
+//            filterChain.doFilter(request, response);
+//            return;
+//        }
+        if (request.getSession().getAttribute("loginUser") == sessionId)
         {
             log.info("管理员已登录，用户id为：{}", request.getSession().getAttribute("loginUser"));
             BigInteger bigInteger = (BigInteger) request.getSession().getAttribute("loginUser");
