@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.telecom.pojo.Manage;
 
 import javax.servlet.http.HttpServletResponse;
-import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -15,8 +14,8 @@ import java.util.List;
 */
 public interface ManageService extends IService<Manage> {
 
-    Page<Manage> getManagePageN(int page, int pageSize, LocalDate time);
-    Page<Manage> getManagePageY(int page, int pageSize, LocalDate time);
+    Page<Manage> getManagePageN(int page, int pageSize, String time);
+    Page<Manage> getManagePageY(int page, int pageSize, String time);
     Page<Manage> getManagePageRepair(int page, int pageSize, int id, int status);
     void exportExcel(List<Integer> list, HttpServletResponse response);
 }

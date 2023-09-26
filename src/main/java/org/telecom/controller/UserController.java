@@ -58,9 +58,11 @@ public class UserController
     //查看通讯录
     @GetMapping("/viewPerson")
     public R<Page<User>> viewPerson(int page, int pageSize, HttpSession session){
+        if(session.getAttribute("loginUser") == null)
+            return R.error("无权限");
         int id = (int) session.getAttribute("loginUser");
         User user = userService.getById(id);
-        int level = user.getLevel();
+        int level = user.getUserLevel();
         return R.success(userService.getUserPage((page - 1) * pageSize, pageSize));
     }
 

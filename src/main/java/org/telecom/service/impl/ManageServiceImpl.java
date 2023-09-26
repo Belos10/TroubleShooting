@@ -1,7 +1,6 @@
 package org.telecom.service.impl;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.telecom.dto.TroubleDto;
@@ -9,14 +8,12 @@ import org.telecom.pojo.Manage;
 import org.springframework.stereotype.Service;
 import org.telecom.mapper.ManageMapper;
 import org.telecom.pojo.Trouble;
-import org.telecom.pojo.User;
 import org.telecom.service.ManageService;
 import org.telecom.service.TroubleService;
 import org.telecom.utils.ExcelUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +33,7 @@ public class ManageServiceImpl extends ServiceImpl<ManageMapper, Manage>
     TroubleService troubleService;
 
     @Override
-    public Page<Manage> getManagePageN(int page, int pageSize, LocalDate time)
+    public Page<Manage> getManagePageN(int page, int pageSize, String time)
     {
         pageSize = manageMapper.getMealPageCountN(time);
         page = 0;
@@ -48,7 +45,7 @@ public class ManageServiceImpl extends ServiceImpl<ManageMapper, Manage>
     }
 
     @Override
-    public Page<Manage> getManagePageY(int page, int pageSize, LocalDate time)
+    public Page<Manage> getManagePageY(int page, int pageSize, String time)
     {
         pageSize = manageMapper.getMealPageCountY(time);
         page = 0;
@@ -80,12 +77,12 @@ public class ManageServiceImpl extends ServiceImpl<ManageMapper, Manage>
         String time = "";
         for(Integer id:idList){
             Trouble trouble = troubleService.getById(id);
-            String key = trouble.getKey();
+            String key = trouble.getTroubleKey();
             Manage manage = getById(key);
             List<Object> list = new ArrayList<>();
             TroubleDto troubleDto = new TroubleDto();
             troubleDto.setTrouble(trouble);
-            troubleDto.setStatus(manage.getStatus());
+            troubleDto.setStatus(manage.getManaStatus());
             troubleDto.setMana_remark(manage.getManaRemark());
             list.add(troubleDto);
             sheetDataList.add(list);

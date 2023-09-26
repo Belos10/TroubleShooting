@@ -1,6 +1,7 @@
 package org.telecom.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.telecom.dto.TroubleDetailDto;
 import org.telecom.pojo.Trouble;
 
 /**
@@ -9,5 +10,5 @@ import org.telecom.pojo.Trouble;
 * @createDate 2023-08-23 16:37:20
 */
 public interface TroubleService extends IService<Trouble> {
-    Trouble getTroubleDetail(String manageId);
+    TroubleDetailDto getTroubleDetail(String manageId);
 }

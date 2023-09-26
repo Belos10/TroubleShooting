@@ -6,8 +6,8 @@
 
     <resultMap id="BaseResultMap" type="org.telecom.pojo.Trouble">
             <id property="troubleId" column="trouble_id" jdbcType="BIGINT"/>
-            <result property="key" column="trouble_key" jdbcType="VARCHAR"/>
-            <result property="name" column="trouble_name" jdbcType="VARCHAR"/>
+            <result property="troubleKey" column="trouble_key" jdbcType="VARCHAR"/>
+            <result property="troubleName" column="trouble_name" jdbcType="VARCHAR"/>
             <result property="phone" column="phone" jdbcType="VARCHAR"/>
             <result property="pic" column="pic" jdbcType="VARCHAR"/>
             <result property="submitTime" column="submit_time" jdbcType="DATE"/>
@@ -17,7 +17,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        trouble_id,key,name,
+        trouble_id,trouble_key,trouble_name,
         phone,pic,submit_time,
         remark,address,region
     </sql>

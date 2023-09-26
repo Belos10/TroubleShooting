@@ -25,13 +25,14 @@ public class User implements Serializable
     private BigInteger id;
     //账户
     @TableField("acct")
-    private String account;
+    private String acct;
     //密码
     @TableField("pwd")
-    private String password;
+    private String pwd;
     @TableField("user_name")
-    private String name;
+    private String userName;
     @TableField("user_level")
-    private int level;   //0:管理员 1：维修人员
+    private int userLevel;   //0:管理员 1：维修人员
     private String phone;
+    private String userRegion;
 }

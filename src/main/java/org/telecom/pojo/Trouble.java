@@ -19,7 +19,7 @@ public class Trouble {
     private BigInteger troubleId;
     //订单标识
     @TableField("trouble_key")
-    private String key;
+    private String troubleKey;
     @ExcelImport("电话")
     private String phone;
     @ExcelImport("地址")
@@ -33,7 +33,7 @@ public class Trouble {
     private String remark;
     @ExcelImport("姓名")
     @TableField("trouble_name")
-    private String name;
+    private String troubleName;
     @ExcelImport("地区")
     private String region;
 

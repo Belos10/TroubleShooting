@@ -22,7 +22,7 @@ public class Manage {
     //3:已完成
     //4:无需处理
     @TableField("mana_status")
-    private int status;
+    private int manaStatus;
     private String manaRemark;
     private String manaPic;
 

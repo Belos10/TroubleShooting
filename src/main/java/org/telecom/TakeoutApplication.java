@@ -16,11 +16,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableCaching          // 开启缓存注解
 public class TakeoutApplication
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         SpringApplication.run(TakeoutApplication.class, args);
         System.out.println("localhost:8080/backend/page/login/login.html");
         System.out.println("localhost:8080/front/page/login.html");
     }
-
 }

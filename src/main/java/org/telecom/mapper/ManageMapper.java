@@ -16,15 +16,12 @@ import java.util.List;
 */
 @Mapper
 public interface ManageMapper extends BaseMapper<Manage> {
-
     List<Manage> getManagePageRepair(int page, int pageSize, int id, int status);
-
     int getMealPageCountRepair(int id, int status);
-
-    int getMealPageCountN(LocalDate time);
-    List<Manage> getManagePageN(int page, int pageSize, LocalDate time);
-    int getMealPageCountY(LocalDate time);
-    List<Manage> getManagePageY(int page, int pageSize, LocalDate time);
+    int getMealPageCountN(String time);
+    List<Manage> getManagePageN(int page, int pageSize, String time);
+    int getMealPageCountY(String time);
+    List<Manage> getManagePageY(int page, int pageSize, String time);
 
 }
 

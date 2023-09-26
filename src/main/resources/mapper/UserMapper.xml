@@ -6,10 +6,10 @@
 
     <resultMap id="BaseResultMap" type="org.telecom.pojo.User">
         <id property="id" column="id" jdbcType="BIGINT"/>
-        <result column="acct" property="account" jdbcType="VARCHAR"/>
-        <result property="password" column="pwd" jdbcType="VARCHAR"/>
-        <result property="level" column="user_level" jdbcType="INTEGER"/>
-        <result property="name" column="user_name" jdbcType="VARCHAR"/>
+        <result column="acct" property="acct" jdbcType="VARCHAR"/>
+        <result property="pwd" column="pwd" jdbcType="VARCHAR"/>
+        <result property="userLevel" column="user_level" jdbcType="INTEGER"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="getUserPage" resultType="org.telecom.pojo.User">
@@ -17,6 +17,9 @@
     </select>
     <select id="getUserPageCount" resultType="java.lang.Integer">
         select count(*) from user
+    </select>
+    <select id="getUserByRegion" resultType="org.telecom.pojo.User">
+        select * from user where user_region = #{region} and user_level != 0
     </select>
 
 </mapper>

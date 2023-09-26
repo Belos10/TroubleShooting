@@ -7,13 +7,13 @@
     <resultMap id="BaseResultMap" type="org.telecom.pojo.Manage">
             <result property="manageId" column="manage_id" jdbcType="VARCHAR"/>
             <result property="handlerId" column="handler_id" jdbcType="BIGINT"/>
-            <result property="status" column="mana_status" jdbcType="INTEGER"/>
+            <result property="manaStatus" column="mana_status" jdbcType="INTEGER"/>
             <result property="manaRemark" column="mana_remark" jdbcType="VARCHAR"/>
             <result property="manaPic" column="mana_pic" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        manage_id,handler_id,status,
+        manage_id,handler_id,mana_status,
         mana_remark,mana_pic
     </sql>
     <select id="getManagePageRepair" resultType="org.telecom.pojo.Manage">
